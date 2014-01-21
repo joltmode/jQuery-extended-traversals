@@ -2,7 +2,7 @@
 // but, Selection API works with Text nodes only.
 // Therefore, we are extending jQuery a little.
 
-var rparentsprev = /^(?:parents|prev(?:Until|All))/;
+var rprev = /^(?:prev(?:Until|All))/;
 // methods guaranteed to produce a unique set when starting from a unique set
 var guaranteedUnique =
 {
@@ -59,14 +59,6 @@ jQuery.extend({
 });
 
 jQuery.each({
-    parentsWithTypes: function(element, index, types)
-    {
-        return jQuery.traverseWithTypes(types, element, 'parentNode');
-    },
-    parentsWithTypesUntil: function(element, index, options)
-    {
-        return jQuery.traverseWithTypes(options.types, element, 'parentNode', options.until);
-    },
     nextWithTypes : function(element, index, options)
     {
         return jQuery.siblingWithTypes(options.types, element, 'nextSibling');
@@ -124,7 +116,7 @@ jQuery.each({
             }
 
             // Reverse order for parents* and prev-derivatives.
-            if (rparentsprev.test(name))
+            if (rprev.test(name))
             {
                 matched.reverse();
             }
